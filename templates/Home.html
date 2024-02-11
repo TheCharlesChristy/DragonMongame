@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DragonMon</title>
+  <style>
+    .body {
+      background-image: url("{{url_for('static', filename='Assets/HomeBackground.jpg')}}");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #000000;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      border: 20px solid #000;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-top: 3rem;
+      text-shadow: 2px 2px #000;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      background-color: #d8d8d8;
+      color: #000;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 0.5rem;
+      margin-top: 7rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b8b8b8;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-size: contain;
+      }
+    }
+    .menu {
+      background-image: url("{{url_for('static', filename='Assets/HomeBackground.jpg')}}");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      border: 20px solid #000;
+      box-sizing: border-box;
+    }
+    .error {
+      background-image: url("{{url_for('static', filename='Assets/HomeBackground.jpg')}}");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      border: 20px solid #000;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class = "menu">
+    <h1>DragonMon</h1>
+    <button id="CreateAccount">Create Account</button>
+    <button onclick="location.href = '/Login';">Login</button>
+  </div>
+  <div class = "error">Please enlarge window</div>
+</body>
+<script type="text/javascript">
+  document.getElementById("CreateAccount").onclick = function () {
+    location.href = "/Createaccount";
+  };
+  // Detect window size
+  function checkSize() {
+      if (window.innerWidth < 1024 || window.innerHeight < 576) {
+        document.querySelector('.menu').style.display = 'none';
+        document.querySelector('.error').style.display = 'flex';
+      } else {
+        document.querySelector('.menu').style.display = 'flex';
+        document.querySelector('.error').style.display = 'none';
+      }
+    }
+
+    // Call checkSize on load and resize
+    window.addEventListener('load', checkSize);
+    window.addEventListener('resize', checkSize);
+</script>
+</html>

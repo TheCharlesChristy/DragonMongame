@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-image: url("{{url_for('static', filename='Assets/CreateAccount.jpg')}}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    label, input {
+      margin: 10px 0;
+    }
+    button {
+      margin-top: 20px;
+    }
+    .reset-password {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .error-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      display: none;
+      color: blue;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 24px;
+      z-index: 5;
+    }
+    @media (max-width: 1024px) {
+      form, .reset-password {
+        display: none;
+      }
+      .error-message {
+        display: block;
+      }
+    }
+    /* Style the Home button */
+    .home-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #ffffff;
+      color: #000000;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease-in-out;
+      z-index: 1;
+    }
+
+    /* Hover effect for the Home button */
+    .home-button:hover {
+      background-color: #909090;
+    }
+  </style>
+</head>
+<body>
+  <button class="home-button" onclick = "goHome()">Home</button>
+  <a href="https://dragonmongame.com/ForgotPassword" class="reset-password"><button>Reset Password</button></a>
+  <form action="{{ url_for('Verify') }}" method="post" id="Form">
+    <label for="username">Username or email:</label>
+    <input type="text" id="username" name="username" placeholder="username">
+    <label for="Password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="password" minlength="1">
+    <input type="hidden" id="Token" name="Token" value="{{ Token }}">
+    <input type="hidden" id="reference" name="reference" value="Login">
+    <button type="submit" id="button">Login</button>
+  </form>
+  {% if message %}
+      <p>{{ message }}</p>
+  {% endif %}
+  <p class="error-message">Please enlarge window</p>
+  <script>
+    function goHome() {
+      location.href = "https://dragonmongame.com"
+    }
+    window.addEventListener("pageshow", function(event) {
+      var historyTraversal = event.persisted ||
+        (typeof window.performance != "undefined" &&
+          window.performance.navigation.type === 2);
+      if (historyTraversal) {
+        // Handle page restore.
+        window.location.reload();
+      }
+    });
+  </script>
+</body>
+</html>

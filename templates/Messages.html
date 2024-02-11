@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Submit Button and Text Input Field Example</title>
+    <style>
+      /* Position the submit button at the bottom right of the window */
+      #submit-button {
+        position: absolute;
+        bottom: 20px;
+        right: 50px;
+        width: 100px;
+        height: 50px;
+      }
+      
+      /* Center the text input field at the bottom of the webpage */
+      #text-input {
+        font-size: large;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 20px; /* Add a small margin from the bottom of the window */
+        left: 0;
+        right: 0;
+        height: 50px;
+        width: 66%; /* Set the width of the text input field */
+      }
+      
+      /* Style the buttons */
+      .username-button {
+        position: relative;
+        top: 70px;
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: white;
+        border: none;
+        border-radius: 5px;
+        text-align: left;
+        cursor: pointer;
+        width: 100%;
+        height: 40px;
+      }
+
+      .message {
+        position: relative;
+        left: 12%;
+      }
+
+      .messages {
+        position: absolute;
+        bottom: 70px;
+        width: 100%;
+      }
+
+      .user-buttons {
+        position: absolute;
+        background-color: black;
+        left: 0%;
+        width: 10%;
+        height: 100%;
+        border: thick solid black;
+        border-radius: 5px;
+      }
+
+      .username-button:hover{
+        background-color: grey;
+      }
+
+      
+      /* Style the header */
+      header {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        background-color: #000000;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+      }
+      
+      /* Style the button in the header */
+      #header-button {
+        background-color: #eee;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+      
+      /* Style the paragraph in the header */
+      #header-paragraph {
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      #Manage-button {
+        margin: 0;
+        position: absolute;
+        right: 10px;
+        top: 80px;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      .ClearConversation {
+        position: absolute;
+        left: 12%;
+        top: 15%;
+      }
+
+      .CreateGroup {
+        position: absolute;
+        left: 12%;
+        top: 25%;
+      }
+
+      #body {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0%;
+      }
+      .membertable {
+        position: absolute;
+        left: 12%;
+        top: 15%;
+      }
+      .Error{
+        position: absolute;
+        left: 12%;
+        bottom: 15%;
+        font-size: x-large;
+        color: red;
+      }
+      .addmember{
+        position: absolute;
+        left: 12%;
+        top: 30%;
+      }
+      .leavebutton{
+        position: absolute;
+        left: 12%;
+        top: 40%;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <button id="Manage-button" onclick ="ManageConversation()">Manage Conversation</button>
+    <!-- Add the text input field -->
+    <input type="text" id="text-input" placeholder="Type something...">
+    
+    <!-- Add the submit button -->
+    <button id="submit-button" onclick="Sendmessage()">Submit</button>
+    
+    <!-- Add the table of buttons -->
+    <div id="user-buttons" class="user-buttons"></div>
+    
+    <!-- Add the header with a button and a paragraph -->
+    <header>
+      <button id="header-button" onclick ="Goback()">Back</button>
+      <p id="header-paragraph">{{ username }}</p>
+    </header>
+
+    <div id = "messages" class = "messages"></div>
+    
+    <!-- Load the JavaScript code at the end of the body to make sure the DOM is ready -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        username = "{{ username }}"
+    </script>
+    <script type="text/javascript" src="{{url_for('static', filename='Messages.js')}}"></script>
+  </body>
+</html>
